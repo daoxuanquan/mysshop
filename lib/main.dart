@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mysshop/routes.dart';
+import 'package:mysshop/screens/sign_in/sign_in_screen.dart';
 import 'package:mysshop/theme.dart';
-
-import 'screens/splash/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,9 +15,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: theme(),
-      // home: SplashScreen(),
+      home: SignInScreen(),
       // We use routeName so that we dont need to remember the name
-      initialRoute: SplashScreen.routeName,
+      initialRoute: SignInScreen.routeName,
       routes: routes,
     );
   }

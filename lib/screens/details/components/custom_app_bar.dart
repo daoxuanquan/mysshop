@@ -4,68 +4,47 @@ import 'package:mysshop/constants.dart';
 import 'package:mysshop/screens/cart/cart_screen.dart';
 import 'package:mysshop/screens/home/components/icon_btn_with_counter.dart';
 
-import '../../../size_config.dart';
-
 class CustomAppBar extends StatelessWidget {
-  final double rating;
-
-  CustomAppBar({required this.rating});
-
-  @override
+  // @override
   // AppBar().preferredSize.height provide us the height that appy on our app bar
-  Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
+  // Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Card(
-        elevation: 4,
-        child: Container(
-          color: Colors.white24,
-          padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-          child: Row(
-            children: [
-              SizedBox(
-                height: getProportionateScreenWidth(40),
-                width: getProportionateScreenWidth(40),
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(60),
-                    ),
-                    primary: kPrimaryColor,
-                    backgroundColor: Colors.white,
-                    padding: EdgeInsets.zero,
+      child: Container(
+        height: 50,
+        width: MediaQuery.of(context).size.width,
+        color: Colors.transparent,
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          children: [
+            SizedBox(
+              height: 40,
+              width: 40,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60),
                   ),
-                  onPressed: () => Navigator.pop(context),
-                  child: SvgPicture.asset(
-                    "assets/icons/Back ICon.svg",
-                    height: 15,
-                  ),
+                  primary: kPrimaryColor,
+                  backgroundColor: Colors.white,
+                  padding: EdgeInsets.zero,
+                ),
+                onPressed: () => Navigator.pop(context),
+                child: SvgPicture.asset(
+                  "assets/icons/Back ICon.svg",
+                  height: 17,
                 ),
               ),
-              Spacer(),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Row(
-                  children: [
-                    IconBtnWithCounter(
-                      svgSrc: "assets/icons/Cart Icon.svg",
-                      press: () =>
-                          Navigator.pushNamed(context, CartScreen.routeName),
-                      numOfitem: 10,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+            ),
+            Spacer(),
+            IconBtnWithCounter(
+              svgSrc: "assets/icons/Cart Icon.svg",
+              press: () => Navigator.pushNamed(context, CartScreen.routeName),
+              numOfitem: 10,
+            ),
+          ],
         ),
       ),
     );

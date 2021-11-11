@@ -5,7 +5,6 @@ import 'package:mysshop/components/form_error.dart';
 import 'package:mysshop/screens/complete_profile/complete_profile_screen.dart';
 
 import '../../../constants.dart';
-import '../../../size_config.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -41,12 +40,12 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         children: [
           buildEmailFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: 30),
           buildPasswordFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: 30),
           buildConformPassFormField(),
           FormError(errors: errors),
-          SizedBox(height: getProportionateScreenHeight(40)),
+          SizedBox(height: 40),
           DefaultButton(
             text: "Continue",
             press: () {
