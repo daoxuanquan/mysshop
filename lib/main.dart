@@ -1,30 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:mysshop/routes.dart';
+import 'package:mysshop/theme.dart';
 
-import 'constants/constants.dart';
-import 'ui/signin.dart';
-import 'ui/signup.dart';
-import 'ui/splashscreen.dart';
+import 'screens/splash/splash_screen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Login",
-      theme: ThemeData(primaryColor: Colors.orange[200]),
-      routes: <String, WidgetBuilder>{
-        SPLASH_SCREEN: (BuildContext context) => SplashScreen(),
-        SIGN_IN: (BuildContext context) => SignInPage(),
-        SIGN_UP: (BuildContext context) => SignUpScreen(),
-      },
-      initialRoute: SPLASH_SCREEN,
+      title: 'Flutter Demo',
+      theme: theme(),
+      // home: SplashScreen(),
+      // We use routeName so that we dont need to remember the name
+      initialRoute: SplashScreen.routeName,
+      routes: routes,
     );
   }
 }
