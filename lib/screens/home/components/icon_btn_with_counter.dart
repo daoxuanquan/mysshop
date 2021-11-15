@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../constants.dart';
 
 class IconBtnWithCounter extends StatelessWidget {
-  const IconBtnWithCounter({
+  IconBtnWithCounter({
     Key? key,
     required this.svgSrc,
     this.numOfitem = 0,

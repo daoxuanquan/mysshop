@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:mysshop/components/default_button.dart';
+import 'package:mysshop/screens/home/home_screen_controller.dart';
 
 import '../../../constants.dart';
 
 class CheckoutCard extends StatelessWidget {
-  const CheckoutCard({
+  HomeScreenController controller = Get.find();
+  CheckoutCard({
     Key? key,
   }) : super(key: key);
 
@@ -62,15 +65,17 @@ class CheckoutCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text.rich(
-                  TextSpan(
-                    text: "Total:\n",
-                    children: [
-                      TextSpan(
-                        text: "\$337.15",
-                        style: TextStyle(fontSize: 16, color: Colors.black),
-                      ),
-                    ],
+                Obx(
+                  () => Text.rich(
+                    TextSpan(
+                      text: "Total:\n",
+                      children: [
+                        TextSpan(
+                          text: controller.getTotalPrice().toStringAsFixed(2),
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(

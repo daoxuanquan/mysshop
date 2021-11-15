@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:mysshop/models/Product.dart';
 import 'package:mysshop/screens/details/details_screen.dart';
+import 'package:mysshop/screens/home/home_screen_controller.dart';
 
 import '../constants.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({
+  ProductCard({
     Key? key,
-    this.width = 140,
-    this.aspectRetio = 1.02,
     required this.product,
   }) : super(key: key);
 
-  final double width, aspectRetio;
   final Product product;
 
   @override
@@ -21,7 +20,7 @@ class ProductCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 20),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width / 3,
         child: GestureDetector(
           onTap: () => Navigator.pushNamed(
             context,

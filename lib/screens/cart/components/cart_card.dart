@@ -33,10 +33,13 @@ class CartCard extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              cart.product.title,
-              style: TextStyle(color: Colors.black, fontSize: 16),
-              maxLines: 2,
+            Container(
+              width: 50,
+              child: Text(
+                cart.product.title,
+                style: TextStyle(color: Colors.black, fontSize: 16),
+                maxLines: 2,
+              ),
             ),
             SizedBox(height: 10),
             Text.rich(

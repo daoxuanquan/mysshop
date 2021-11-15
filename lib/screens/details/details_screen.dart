@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mysshop/constants.dart';
+import 'package:mysshop/screens/cart/cart_screen.dart';
+import 'package:mysshop/screens/home/home_screen_controller.dart';
 
 import '../../models/Product.dart';
 import 'components/body.dart';
@@ -7,17 +10,13 @@ import 'components/custom_app_bar.dart';
 
 class DetailsScreen extends StatelessWidget {
   static String routeName = "/details";
-
+  final HomeScreenController _homeScreenController = Get.find();
   @override
   Widget build(BuildContext context) {
     final ProductDetailsArguments agrs =
         ModalRoute.of(context)!.settings.arguments as ProductDetailsArguments;
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F9),
-      // appBar: PreferredSize(
-      //   preferredSize: Size.fromHeight(AppBar().preferredSize.height),
-      //   child: CustomAppBar(),
-      // ),
       body: Stack(
         children: [
           Body(product: agrs.product),
@@ -36,6 +35,8 @@ class DetailsScreen extends StatelessWidget {
   }
 
   Widget getBottomDetail(BuildContext context) {
+    final ProductDetailsArguments agrs =
+        ModalRoute.of(context)!.settings.arguments as ProductDetailsArguments;
     double bottomHeight = 50;
     return Container(
         height: bottomHeight,
@@ -74,23 +75,29 @@ class DetailsScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      color: Colors.blue,
-                      height: bottomHeight,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.add_shopping_cart,
-                            color: Colors.white,
-                            size: 23,
-                          ),
-                          Text(
-                            'Add cart',
-                            style: TextStyle(fontSize: 12, color: Colors.white),
-                          )
-                        ],
+                    child: GestureDetector(
+                      onTap: () {
+                        _homeScreenController.selectedItems.add(agrs.product);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        color: Colors.blue,
+                        height: bottomHeight,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.add_shopping_cart,
+                              color: Colors.white,
+                              size: 23,
+                            ),
+                            Text(
+                              'Add cart',
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.white),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   )
@@ -98,19 +105,24 @@ class DetailsScreen extends StatelessWidget {
               ),
             )),
             Expanded(
-                child: Container(
-              alignment: Alignment.center,
-              height: bottomHeight,
-              color: kPrimaryColor,
-              width: MediaQuery.of(context).size.width / 2,
-              child: Text(
-                'Mua ngay',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, CartScreen.routeName);
+              },
+              child: Container(
+                alignment: Alignment.center,
+                height: bottomHeight,
+                color: kPrimaryColor,
+                width: MediaQuery.of(context).size.width / 2,
+                child: Text(
+                  'Mua ngay',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
               ),
-            ))
+            )),
           ],
         ));
   }

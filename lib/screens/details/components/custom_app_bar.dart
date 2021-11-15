@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:mysshop/constants.dart';
 import 'package:mysshop/screens/cart/cart_screen.dart';
 import 'package:mysshop/screens/home/components/icon_btn_with_counter.dart';
+import 'package:mysshop/screens/home/home_screen_controller.dart';
 
 class CustomAppBar extends StatelessWidget {
-  // @override
-  // AppBar().preferredSize.height provide us the height that appy on our app bar
-  // Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
+  HomeScreenController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +39,13 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
             Spacer(),
-            IconBtnWithCounter(
-              svgSrc: "assets/icons/Cart Icon.svg",
-              press: () => Navigator.pushNamed(context, CartScreen.routeName),
-              numOfitem: 10,
-            ),
+            Obx(
+              () => IconBtnWithCounter(
+                svgSrc: "assets/icons/Cart Icon.svg",
+                press: () => Navigator.pushNamed(context, CartScreen.routeName),
+                numOfitem: controller.selectedItems.length,
+              ),
+            )
           ],
         ),
       ),
