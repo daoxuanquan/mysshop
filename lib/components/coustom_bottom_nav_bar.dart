@@ -19,7 +19,6 @@ class CustomBottomNavBar extends StatelessWidget {
       ),
       height: 55 + MediaQuery.of(context).padding.bottom,
       decoration: BoxDecoration(
-        color: Colors.grey,
         boxShadow: [
           BoxShadow(
             offset: Offset(0, -15),

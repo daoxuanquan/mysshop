@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mysshop/constants.dart';
 import 'package:mysshop/screens/cart/cart_controller.dart';
 import 'package:mysshop/screens/home/home_screen_controller.dart';
 
@@ -21,6 +22,7 @@ class CartScreen extends StatelessWidget {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
+      backgroundColor: kPrimaryColor,
       title: Column(
         children: [
           Text(

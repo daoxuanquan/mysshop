@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mysshop/constants.dart';
 import 'package:mysshop/screens/confirm_code/confirm_code_controller.dart';
+import 'package:mysshop/screens/payment/index.dart';
+import 'package:mysshop/screens/payment_succes/payment_success.dart';
 
 class ConfirmCodeScreen extends StatefulWidget {
   const ConfirmCodeScreen({Key? key}) : super(key: key);
@@ -17,6 +19,7 @@ class _ConfirmCodeScreenState extends State<ConfirmCodeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: kPrimaryColor,
         title: Text('Confirmation'),
       ),
       body: Padding(
@@ -61,20 +64,25 @@ class _ConfirmCodeScreenState extends State<ConfirmCodeScreen> {
                 onTap: () {
                   print('object');
                 },
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                    color: kPrimaryColor,
-                  ),
-                  height: 55,
-                  width: 120,
-                  child: Text(
-                    'SEND',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                child: InkWell(
+                  onTap: () {
+                    Get.to(() => PaymentSuccess());
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      color: kPrimaryColor,
+                    ),
+                    height: 55,
+                    width: 120,
+                    child: Text(
+                      'SEND',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
                   ),
                 ),
               ),
