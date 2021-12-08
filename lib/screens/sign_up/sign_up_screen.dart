@@ -8,7 +8,17 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sign Up"),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: InkWell(
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Body(),
     );

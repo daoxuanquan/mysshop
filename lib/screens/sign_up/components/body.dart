@@ -24,20 +24,12 @@ class Body extends StatelessWidget {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.08),
                 SignUpForm(),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.08),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SocalCard(
                       icon: "assets/icons/google-icon.svg",
-                      press: () {},
-                    ),
-                    SocalCard(
-                      icon: "assets/icons/facebook-2.svg",
-                      press: () {},
-                    ),
-                    SocalCard(
-                      icon: "assets/icons/twitter.svg",
                       press: () {},
                     ),
                   ],

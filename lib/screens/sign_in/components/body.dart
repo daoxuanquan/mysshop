@@ -23,6 +23,9 @@ class Body extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                SizedBox(
+                  height: 12,
+                ),
                 Text(
                   "Sign in with your email and password  \nor continue with social media",
                   textAlign: TextAlign.center,
@@ -35,14 +38,6 @@ class Body extends StatelessWidget {
                   children: [
                     SocalCard(
                       icon: "assets/icons/google-icon.svg",
-                      press: () {},
-                    ),
-                    SocalCard(
-                      icon: "assets/icons/facebook-2.svg",
-                      press: () {},
-                    ),
-                    SocalCard(
-                      icon: "assets/icons/twitter.svg",
                       press: () {},
                     ),
                   ],
