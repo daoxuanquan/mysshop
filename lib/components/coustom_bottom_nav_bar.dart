@@ -14,7 +14,10 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color inActiveIconColor = Color(0xFFB6B6B6);
     return Container(
-      height: 55,
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).padding.bottom,
+      ),
+      height: 55 + MediaQuery.of(context).padding.bottom,
       decoration: BoxDecoration(
         color: Colors.grey,
         boxShadow: [
@@ -25,47 +28,60 @@ class CustomBottomNavBar extends StatelessWidget {
           ),
         ],
       ),
-      child: SafeArea(
-          top: false,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon: Obx(
-                  () => SvgPicture.asset(
-                    "assets/icons/Shop Icon.svg",
-                    color: homeScreenController.bottomBarItem.value ==
-                            CustomBottomItemName.home
-                        ? kPrimaryColor
-                        : inActiveIconColor,
-                  ),
-                ),
-                onPressed: () => homeScreenController
-                    .setCustomBottomBarItem(CustomBottomItemName.home),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          IconButton(
+            icon: Obx(
+              () => SvgPicture.asset(
+                "assets/icons/Shop Icon.svg",
+                width: 30,
+                height: 30,
+                color: homeScreenController.bottomBarItem.value ==
+                        CustomBottomItemName.home
+                    ? kPrimaryColor
+                    : inActiveIconColor,
               ),
-              IconButton(
-                icon: SvgPicture.asset("assets/icons/Heart Icon.svg"),
-                onPressed: () {},
+            ),
+            onPressed: () {
+              homeScreenController
+                  .setCustomBottomBarItem(CustomBottomItemName.home);
+              print('home tab onpress');
+            },
+          ),
+          IconButton(
+            icon: SvgPicture.asset(
+              "assets/icons/Heart Icon.svg",
+              width: 30,
+              height: 30,
+            ),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: SvgPicture.asset(
+              "assets/icons/Chat bubble Icon.svg",
+              width: 30,
+              height: 30,
+            ),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Obx(
+              () => SvgPicture.asset(
+                "assets/icons/User Icon.svg",
+                width: 30,
+                height: 30,
+                color: homeScreenController.bottomBarItem.value ==
+                        CustomBottomItemName.profile
+                    ? kPrimaryColor
+                    : inActiveIconColor,
               ),
-              IconButton(
-                icon: SvgPicture.asset("assets/icons/Chat bubble Icon.svg"),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: Obx(
-                  () => SvgPicture.asset(
-                    "assets/icons/User Icon.svg",
-                    color: homeScreenController.bottomBarItem.value ==
-                            CustomBottomItemName.profile
-                        ? kPrimaryColor
-                        : inActiveIconColor,
-                  ),
-                ),
-                onPressed: () => homeScreenController
-                    .setCustomBottomBarItem(CustomBottomItemName.profile),
-              ),
-            ],
-          )),
+            ),
+            onPressed: () => homeScreenController
+                .setCustomBottomBarItem(CustomBottomItemName.profile),
+          ),
+        ],
+      ),
     );
   }
 }

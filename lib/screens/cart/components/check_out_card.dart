@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mysshop/components/default_button.dart';
 import 'package:mysshop/screens/home/home_screen_controller.dart';
+import 'package:mysshop/screens/payment/index.dart';
 
 import '../../../constants.dart';
 
@@ -82,7 +83,9 @@ class CheckoutCard extends StatelessWidget {
                   width: 190,
                   child: DefaultButton(
                     text: "Check Out",
-                    press: () {},
+                    press: () {
+                      Get.to(() => PaymentScreen());
+                    },
                   ),
                 ),
               ],
