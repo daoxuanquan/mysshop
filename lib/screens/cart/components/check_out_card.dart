@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mysshop/components/default_button.dart';
+import 'package:mysshop/screens/confirm_code/confirm_code_screen.dart';
 import 'package:mysshop/screens/home/home_screen_controller.dart';
 import 'package:mysshop/screens/payment/index.dart';
 
@@ -42,18 +43,16 @@ class CheckoutCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Container(
-                  padding: EdgeInsets.all(10),
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFF5F6F9),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: SvgPicture.asset("assets/icons/receipt.svg"),
+                Icon(
+                  Icons.paid,
+                  size: 35,
+                  color: kPrimaryColor,
                 ),
                 Spacer(),
-                Text("Add voucher code"),
+                Text(
+                  "VCB<****>",
+                  style: TextStyle(color: Colors.black),
+                ),
                 const SizedBox(width: 10),
                 Icon(
                   Icons.arrow_forward_ios,
@@ -84,7 +83,7 @@ class CheckoutCard extends StatelessWidget {
                   child: DefaultButton(
                     text: "Check Out",
                     press: () {
-                      Get.to(() => PaymentScreen());
+                      Get.to(() => ConfirmCodeScreen());
                     },
                   ),
                 ),

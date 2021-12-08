@@ -31,12 +31,12 @@ class ProfileMenu extends StatelessWidget {
           children: [
             SvgPicture.asset(
               icon,
-              color: kPrimaryColor,
-              width: 22,
+              color: Colors.black,
+              width: 28,
             ),
             SizedBox(width: 20),
-            Expanded(child: Text(text)),
-            Icon(Icons.arrow_forward_ios),
+            Expanded(child: Text(text, style: TextStyle(color: Colors.black),)),
+            Icon(Icons.arrow_forward_ios, color: Colors.black,),
           ],
         ),
       ),

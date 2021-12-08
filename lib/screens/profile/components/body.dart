@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mysshop/screens/cart/components/check_out_card.dart';
 import 'package:mysshop/screens/home/home_screen_controller.dart';
+import 'package:mysshop/screens/payment/index.dart';
 
 import 'profile_menu.dart';
 import 'profile_pic.dart';
@@ -18,9 +20,11 @@ class Body extends StatelessWidget {
               ProfilePic(),
               SizedBox(height: 20),
               ProfileMenu(
-                text: "My Account",
-                icon: "assets/icons/User Icon.svg",
-                press: () => {},
+                text: "Add credit card",
+                icon: "assets/icons/Cash.svg",
+                press: () => {
+                  Get.to(()=> PaymentScreen())
+                },
               ),
               ProfileMenu(
                 text: "Notifications",
@@ -30,11 +34,6 @@ class Body extends StatelessWidget {
               ProfileMenu(
                 text: "Settings",
                 icon: "assets/icons/Settings.svg",
-                press: () {},
-              ),
-              ProfileMenu(
-                text: "Help Center",
-                icon: "assets/icons/Question mark.svg",
                 press: () {},
               ),
               ProfileMenu(

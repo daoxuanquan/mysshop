@@ -38,7 +38,7 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Wireless Controller for PS4™",
+    title: "Điện thoại iPhone 13 128GB ™",
     price: 64.99,
     description: description,
     rating: 4.8,
@@ -48,7 +48,9 @@ List<Product> demoProducts = [
   Product(
     id: 2,
     images: [
-      "assets/images/Image Popular Product 2.png",
+      "assets/images/ipad_1.png",
+      "assets/images/ipad_2.png",
+      "assets/images/ipad_3.png",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -56,9 +58,9 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Nike Sport White - Man Pant",
+    title: "iPad Air 10.9 2020 WiFi 64GB I Chính hãng Apple Việt Nam",
     price: 50.5,
-    description: description,
+    description: 'iPad Air 4 2020 – Chip A14 mạnh mẽ cho trải nghiệm hoàn hảo',
     rating: 4.1,
     isPopular: true,
   ),
@@ -73,7 +75,7 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Gloves XC Omega - Polygon",
+    title: "Găng tay mua đông siêu ấm.",
     price: 36.55,
     description: description,
     rating: 4.1,
@@ -125,7 +127,7 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Gloves XC Omega - Polygon",
+    title: "Găng tay mùa hè siêu mát",
     price: 36.55,
     description: description,
     rating: 4.1,
@@ -135,4 +137,4 @@ List<Product> demoProducts = [
 ];
 
 const String description =
-    "Wireless Controller for PS4™ gives you what you want in your gaming from over precision control your games to sharing …";
+    "Con chip Apple A15 Bionic siêu mạnh được sản xuất trên quy trình 5 nm giúp iPhone 13 đạt hiệu năng ấn tượng, với CPU nhanh hơn 50%, GPU nhanh hơn 30% so với các đối thủ trong cùng phân khúc.";
