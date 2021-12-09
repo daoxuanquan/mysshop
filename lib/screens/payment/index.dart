@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:mysshop/constants.dart';
 
 class PaymentScreen extends StatefulWidget {
   @override
@@ -35,7 +36,7 @@ class PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black12,
+        backgroundColor: kPrimaryColor,
         title: Text(
           'Add card',
           style: TextStyle(color: Colors.black),
