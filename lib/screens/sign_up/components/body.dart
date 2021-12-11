@@ -17,9 +17,9 @@ class Body extends StatelessWidget {
               children: [
                 SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04), // 4%
-                Text("Register Account", style: headingStyle),
+                Text("Đăng ký", style: headingStyle),
                 Text(
-                  "Complete your details or continue \nwith social media",
+                  "Điền đầy đủ thông tin hoặc bạn có thể đăng nhập bằng tài khoản mạng xã hội",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.08),
@@ -36,7 +36,7 @@ class Body extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 Text(
-                  'By continuing your confirm that you agree \nwith our Term and Condition',
+                  'Bằng việc tiếp tục đăng ký bạn đã đồng ý với điều khoản của chúng tôi',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.caption,
                 )

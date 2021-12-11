@@ -68,7 +68,7 @@ class CheckoutCard extends StatelessWidget {
                 Obx(
                   () => Text.rich(
                     TextSpan(
-                      text: "Total:\n",
+                      text: "Tổng tiền:\n",
                       children: [
                         TextSpan(
                           text: controller.getTotalPrice().toStringAsFixed(2),
@@ -81,7 +81,7 @@ class CheckoutCard extends StatelessWidget {
                 SizedBox(
                   width: 190,
                   child: DefaultButton(
-                    text: "Check Out",
+                    text: "Thanh toán",
                     press: () {
                       Get.to(() => ConfirmCodeScreen());
                     },

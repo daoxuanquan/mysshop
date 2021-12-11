@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                 Text(
-                  "Welcome Back",
+                  "Chào mừng bạn trở lại",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 28,
@@ -27,7 +27,7 @@ class Body extends StatelessWidget {
                   height: 12,
                 ),
                 Text(
-                  "Sign in with your email and password  \nor continue with social media",
+                  "Đăng nhập bằng email và mật khẩu hoặc đăng nhập bằng mạng xã hội",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.08),

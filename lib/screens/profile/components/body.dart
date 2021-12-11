@@ -20,24 +20,22 @@ class Body extends StatelessWidget {
               ProfilePic(),
               SizedBox(height: 20),
               ProfileMenu(
-                text: "Add credit card",
+                text: "Thêm credit card",
                 icon: "assets/icons/Cash.svg",
-                press: () => {
-                  Get.to(()=> PaymentScreen())
-                },
+                press: () => {Get.to(() => PaymentScreen())},
               ),
               ProfileMenu(
-                text: "Notifications",
+                text: "Thông báo",
                 icon: "assets/icons/Bell.svg",
                 press: () {},
               ),
               ProfileMenu(
-                text: "Settings",
+                text: "Cài đặt",
                 icon: "assets/icons/Settings.svg",
                 press: () {},
               ),
               ProfileMenu(
-                text: "Log Out",
+                text: "Đăng xuất",
                 icon: "assets/icons/Log out.svg",
                 press: () {},
               ),

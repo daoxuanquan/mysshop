@@ -26,7 +26,7 @@ class CartScreen extends StatelessWidget {
       title: Column(
         children: [
           Text(
-            "Your Cart",
+            "Giỏ của bạn",
             style: TextStyle(color: Colors.black),
           ),
           Obx(
