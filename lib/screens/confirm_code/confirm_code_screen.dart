@@ -37,7 +37,7 @@ class _ConfirmCodeScreenState extends State<ConfirmCodeScreen> {
               height: 24,
             ),
             Text(
-              'Please enter your code that you received',
+              'Hãy nhập mã code mà bạn nhận được!',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 18,
@@ -77,7 +77,7 @@ class _ConfirmCodeScreenState extends State<ConfirmCodeScreen> {
                     height: 55,
                     width: 120,
                     child: Text(
-                      'SEND',
+                      'Gửi',
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

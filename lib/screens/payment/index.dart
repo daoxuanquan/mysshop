@@ -38,7 +38,7 @@ class PaymentScreenState extends State<PaymentScreen> {
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
         title: Text(
-          'Add card',
+          'Thêm thẻ thanh toán',
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -86,7 +86,7 @@ class PaymentScreenState extends State<PaymentScreen> {
                         themeColor: Colors.blue,
                         textColor: Colors.black,
                         cardNumberDecoration: InputDecoration(
-                          labelText: 'Number',
+                          labelText: 'Số thẻ',
                           hintText: 'XXXX XXXX XXXX XXXX',
                           hintStyle: const TextStyle(color: Colors.black),
                           labelStyle: const TextStyle(color: Colors.black),
@@ -98,7 +98,7 @@ class PaymentScreenState extends State<PaymentScreen> {
                           labelStyle: const TextStyle(color: Colors.black),
                           focusedBorder: border,
                           enabledBorder: border,
-                          labelText: 'Expired Date',
+                          labelText: 'Ngày hết hạn',
                           hintText: 'XX/XX',
                         ),
                         cvvCodeDecoration: InputDecoration(
@@ -114,7 +114,7 @@ class PaymentScreenState extends State<PaymentScreen> {
                           labelStyle: const TextStyle(color: Colors.black),
                           focusedBorder: border,
                           enabledBorder: border,
-                          labelText: 'Card Holder',
+                          labelText: 'Tên chủ thẻ',
                         ),
                         onCreditCardModelChange: onCreditCardModelChange,
                       ),
@@ -134,7 +134,7 @@ class PaymentScreenState extends State<PaymentScreen> {
                         child: Container(
                           margin: const EdgeInsets.all(12),
                           child: const Text(
-                            'Add Card',
+                            'Thêm thẻ',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'halter',

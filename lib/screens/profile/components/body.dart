@@ -25,8 +25,8 @@ class Body extends StatelessWidget {
                 press: () => {Get.to(() => PaymentScreen())},
               ),
               ProfileMenu(
-                text: "Thông báo",
-                icon: "assets/icons/Bell.svg",
+                text: "Thông tin cá nhân",
+                icon: "assets/icons/person.svg",
                 press: () {},
               ),
               ProfileMenu(
