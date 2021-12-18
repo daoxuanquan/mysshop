@@ -4,8 +4,6 @@ import 'package:mysshop/constants.dart';
 import 'package:mysshop/models/product_model.dart';
 import 'package:mysshop/screens/cart/cart_screen.dart';
 import 'package:mysshop/screens/home/home_screen_controller.dart';
-
-import '../../models/Product.dart';
 import 'components/body.dart';
 import 'components/custom_app_bar.dart';
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mysshop/components/default_button.dart';
+import 'package:mysshop/screens/cart/cart_screen.dart';
 import 'package:mysshop/screens/confirm_code/confirm_code_screen.dart';
 import 'package:mysshop/screens/home/home_screen_controller.dart';
 import 'package:mysshop/screens/payment/index.dart';
@@ -49,9 +50,27 @@ class CheckoutCard extends StatelessWidget {
                   color: kPrimaryColor,
                 ),
                 Spacer(),
-                Text(
-                  "VCB<****>",
-                  style: TextStyle(color: Colors.black),
+                InkWell(
+                  onTap: () {
+                    Get.to(() => PaymentScreen());
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: Colors.black,
+                      ),
+                      Container(
+                        child: Text(
+                          "Thêm thẻ",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(width: 10),
                 Icon(
