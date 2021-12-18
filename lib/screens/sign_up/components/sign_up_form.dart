@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mysshop/components/custom_surfix_icon.dart';
 import 'package:mysshop/components/default_button.dart';
 import 'package:mysshop/components/form_error.dart';
 import 'package:mysshop/screens/complete_profile/complete_profile_screen.dart';
+import 'package:mysshop/screens/sign_up/sign_up_controller.dart';
 
 import '../../../constants.dart';
 
@@ -12,6 +14,7 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
+  final SignUpController signUpController = Get.put(SignUpController());
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
@@ -46,15 +49,18 @@ class _SignUpFormState extends State<SignUpForm> {
           buildConformPassFormField(),
           FormError(errors: errors),
           SizedBox(height: 40),
-          DefaultButton(
-            text: "Continue",
-            press: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                // if all are valid then go to success screen
-                Navigator.pushNamed(context, CompleteProfileScreen.routeName);
-              }
-            },
+          InkWell(
+            child: DefaultButton(
+              text: "Continue",
+              press: () {
+                if (_formKey.currentState!.validate()) {
+                  _formKey.currentState!.save();
+                  // if all are valid then go to success screen
+                  // Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+                  signUpController.register(email ?? "", password ?? "");
+                }
+              },
+            ),
           ),
         ],
       ),
@@ -110,7 +116,7 @@ class _SignUpFormState extends State<SignUpForm> {
         if (value!.isEmpty) {
           addError(error: kPassNullError);
           return "";
-        } else if (value.length < 8) {
+        } else if (value.length < 6) {
           addError(error: kShortPassError);
           return "";
         }

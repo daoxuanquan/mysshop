@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mysshop/screens/sign_up/sign_up_controller.dart';
+import 'package:mysshop/widgets/loading_view.dart';
 
 import 'components/body.dart';
 
 class SignUpScreen extends StatelessWidget {
+  final SignUpController signUpController = Get.put(SignUpController());
   static String routeName = "/sign_up";
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,15 @@ class SignUpScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Body(),
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Body(),
+          signUpController.isLoading.value == true
+              ? LoaddingCustomView()
+              : SizedBox()
+        ],
+      ),
     );
   }
 }

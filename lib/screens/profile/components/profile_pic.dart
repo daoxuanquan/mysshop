@@ -1,11 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ProfilePic extends StatelessWidget {
+class ProfilePic extends StatefulWidget {
   const ProfilePic({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<ProfilePic> createState() => _ProfilePicState();
+}
+
+class _ProfilePicState extends State<ProfilePic> {
+  void subcribeUser() {
+    FirebaseAuth.instance.userChanges().listen((User? user) {
+      if (user == null) {
+        print('User is currently signed out!');
+      } else {
+        setState(() {
+          userName = user.email ?? "";
+        });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    subcribeUser();
+    super.initState();
+  }
+
+  String userName = "";
   @override
   Widget build(BuildContext context) {
     return SizedBox(

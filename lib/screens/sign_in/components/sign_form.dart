@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mysshop/components/custom_surfix_icon.dart';
 import 'package:mysshop/components/form_error.dart';
 import 'package:mysshop/helper/keyboard.dart';
 import 'package:mysshop/screens/forgot_password/forgot_password_screen.dart';
 import 'package:mysshop/screens/home/home_screen.dart';
+import 'package:mysshop/screens/sign_in/sign_in_controller.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -14,6 +16,7 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  SignInController signInController = Get.put(SignInController());
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
@@ -72,14 +75,13 @@ class _SignFormState extends State<SignForm> {
           DefaultButton(
             text: "Đăng nhập",
             press: () {
-              // if (_formKey.currentState!.validate()) {
-              //   _formKey.currentState!.save();
-              //   // if all are valid then go to success screen
-              //   KeyboardUtil.hideKeyboard(context);
-              //   Navigator.pushNamed(context, HomeScreen.routeName);
-              // }
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                // if all are valid then go to success screen
+                KeyboardUtil.hideKeyboard(context);
+                signInController.login(email ?? "", password ?? "");
+              }
               KeyboardUtil.hideKeyboard(context);
-              Navigator.pushNamed(context, HomeScreen.routeName);
             },
           ),
         ],
@@ -94,7 +96,7 @@ class _SignFormState extends State<SignForm> {
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
-        } else if (value.length >= 8) {
+        } else if (value.length >= 6) {
           removeError(error: kShortPassError);
         }
         return null;
@@ -103,7 +105,7 @@ class _SignFormState extends State<SignForm> {
         if (value!.isEmpty) {
           addError(error: kPassNullError);
           return "";
-        } else if (value.length < 8) {
+        } else if (value.length < 6) {
           addError(error: kShortPassError);
           return "";
         }
