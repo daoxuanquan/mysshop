@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mysshop/components/default_button.dart';
-import 'package:mysshop/constants.dart';
-import 'package:mysshop/models/Product.dart';
+
+import 'package:mysshop/models/product_model.dart';
 
 import 'color_dots.dart';
 import 'product_description.dart';
@@ -9,7 +8,7 @@ import 'top_rounded_container.dart';
 import 'product_images.dart';
 
 class Body extends StatelessWidget {
-  final Product product;
+  final ProductModel product;
 
   const Body({Key? key, required this.product}) : super(key: key);
 

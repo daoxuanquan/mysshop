@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mysshop/models/Product.dart';
+import 'package:mysshop/models/product_model.dart';
 import 'package:mysshop/screens/details/details_screen.dart';
 import 'package:mysshop/screens/home/home_screen_controller.dart';
 
@@ -13,7 +15,7 @@ class ProductCard extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +24,13 @@ class ProductCard extends StatelessWidget {
       child: SizedBox(
         width: MediaQuery.of(context).size.width / 3,
         child: GestureDetector(
-          onTap: () => Navigator.pushNamed(
-            context,
-            DetailsScreen.routeName,
-            arguments: ProductDetailsArguments(product: product),
-          ),
+          onTap: () => {
+            Get.to(
+              DetailsScreen(
+                productModel: product,
+              ),
+            )
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -40,7 +44,12 @@ class ProductCard extends StatelessWidget {
                   ),
                   child: Hero(
                     tag: product.id.toString(),
-                    child: Image.asset(product.images[0]),
+                    child: CachedNetworkImage(
+                      imageUrl: product.image,
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
                   ),
                 ),
               ),
@@ -69,17 +78,11 @@ class ProductCard extends StatelessWidget {
                       height: 28,
                       width: 28,
                       decoration: BoxDecoration(
-                        color: product.isFavourite
-                            ? kPrimaryColor.withOpacity(0.15)
-                            : kSecondaryColor.withOpacity(0.1),
+                        color: kPrimaryColor.withOpacity(0.15),
                         shape: BoxShape.circle,
                       ),
-                      child: SvgPicture.asset(
-                        "assets/icons/Heart Icon_2.svg",
-                        color: product.isFavourite
-                            ? Color(0xFFFF4848)
-                            : Color(0xFFDBDEE4),
-                      ),
+                      child: SvgPicture.asset("assets/icons/Heart Icon_2.svg",
+                          color: Color(0xFFFF4848)),
                     ),
                   ),
                 ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mysshop/constants.dart';
+import 'package:mysshop/models/product_model.dart';
 import 'package:mysshop/screens/cart/cart_screen.dart';
 import 'package:mysshop/screens/home/home_screen_controller.dart';
 
@@ -9,17 +10,17 @@ import 'components/body.dart';
 import 'components/custom_app_bar.dart';
 
 class DetailsScreen extends StatelessWidget {
+  late final ProductModel productModel;
+  DetailsScreen({required this.productModel});
   static String routeName = "/details";
   final HomeScreenController _homeScreenController = Get.find();
   @override
   Widget build(BuildContext context) {
-    final ProductDetailsArguments agrs =
-        ModalRoute.of(context)!.settings.arguments as ProductDetailsArguments;
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F9),
       body: Stack(
         children: [
-          Body(product: agrs.product),
+          Body(product: productModel),
           Positioned(
             child: CustomAppBar(),
             top: 0,
@@ -35,8 +36,6 @@ class DetailsScreen extends StatelessWidget {
   }
 
   Widget getBottomDetail(BuildContext context) {
-    final ProductDetailsArguments agrs =
-        ModalRoute.of(context)!.settings.arguments as ProductDetailsArguments;
     double bottomHeight = 50;
     return Container(
         height: bottomHeight,
@@ -77,7 +76,7 @@ class DetailsScreen extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        _homeScreenController.selectedItems.add(agrs.product);
+                        _homeScreenController.selectedItems.add(productModel);
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -126,10 +125,4 @@ class DetailsScreen extends StatelessWidget {
           ],
         ));
   }
-}
-
-class ProductDetailsArguments {
-  final Product product;
-
-  ProductDetailsArguments({required this.product});
 }
