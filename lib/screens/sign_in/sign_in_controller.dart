@@ -3,9 +3,11 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mysshop/helper/custom_dialog.dart';
 import 'package:mysshop/screens/home/home_screen.dart';
+import 'package:mysshop/screens/sign_in/sign_in_screen.dart';
 
 class SignInController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
+  String token = "";
   @override
   void onInit() {
     subcribeUser();
@@ -13,12 +15,14 @@ class SignInController extends GetxController {
   }
 
   void subcribeUser() {
-    auth.userChanges().listen((User? user) {
+    auth.userChanges().listen((User? user) async {
       if (user == null) {
+        Get.offAll(() => SignInScreen());
         print('User is currently signed out!');
       } else {
         Get.offAll(() => HomeScreen());
-        print(user);
+        token = await user.getIdToken();
+        print("token $token");
         print('User is signed in!');
       }
     });

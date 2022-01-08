@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mysshop/screens/cart/components/check_out_card.dart';
@@ -37,7 +38,9 @@ class Body extends StatelessWidget {
               ProfileMenu(
                 text: "Đăng xuất",
                 icon: "assets/icons/Log out.svg",
-                press: () {},
+                press: () async {
+                  await FirebaseAuth.instance.signOut();
+                },
               ),
             ],
           ),
