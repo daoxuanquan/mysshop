@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:get/get.dart';
 import 'package:mysshop/constants.dart';
+import 'package:mysshop/models/card_model.dart';
+import 'package:mysshop/screens/home/home_screen_controller.dart';
 
 class PaymentScreen extends StatefulWidget {
   @override
@@ -11,6 +14,7 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class PaymentScreenState extends State<PaymentScreen> {
+  HomeScreenController _homeScreenController = Get.find();
   String cardNumber = '';
   String expiryDate = '';
   String cardHolderName = '';
@@ -169,8 +173,17 @@ class PaymentScreenState extends State<PaymentScreen> {
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             print('valid!, cardNumber: $cardNumber');
+                            _homeScreenController.card.value = CardModel(
+                                cardNumber: cardNumber,
+                                cardHolder: cardHolderName,
+                                cvv: cvvCode,
+                                expired: expiryDate,
+                                title: cardNumber.substring(0, 4) + "****");
+                            print(
+                                "card plain: ${_homeScreenController.card.value.cardHolder}${_homeScreenController.card.value.title}");
+                            Get.back();
                           } else {
-                            print('valid!, cardNumber: $cardNumber');
+                            print('invalid!, cardNumber: $cardNumber');
                           }
                         },
                       ),
