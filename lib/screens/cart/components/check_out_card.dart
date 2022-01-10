@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ import 'package:mysshop/screens/payment/index.dart';
 import '../../../constants.dart';
 
 class CheckoutCard extends StatelessWidget {
-  HomeScreenController controller = Get.find();
+  HomeScreenController homeScreenController = Get.find();
   CheckoutCard({
     Key? key,
   }) : super(key: key);
@@ -52,24 +53,36 @@ class CheckoutCard extends StatelessWidget {
                 Spacer(),
                 InkWell(
                   onTap: () {
-                    Get.to(() => PaymentScreen());
+                    if (homeScreenController.card.value.title == "") {
+                      Get.to(() => PaymentScreen());
+                    }
                   },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.black,
-                      ),
-                      Container(
-                        child: Text(
-                          "Thêm thẻ",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                  child: Obx(
+                    () => homeScreenController.card.value.title == ""
+                        ? Row(
+                            children: [
+                              Icon(
+                                Icons.add,
+                                color: Colors.black,
+                              ),
+                              Container(
+                                child: Text(
+                                  "Thêm thẻ",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : Text(
+                            homeScreenController.card.value.title,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ),
-                    ],
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -90,7 +103,9 @@ class CheckoutCard extends StatelessWidget {
                       text: "Tổng tiền:\n",
                       children: [
                         TextSpan(
-                          text: controller.getTotalPrice().toStringAsFixed(2),
+                          text: homeScreenController
+                              .getTotalPrice()
+                              .toStringAsFixed(2),
                           style: TextStyle(fontSize: 16, color: Colors.black),
                         ),
                       ],
@@ -102,7 +117,21 @@ class CheckoutCard extends StatelessWidget {
                   child: DefaultButton(
                     text: "Thanh toán",
                     press: () {
-                      Get.to(() => ConfirmCodeScreen());
+                      // Get.to(() => ConfirmCodeScreen());
+                      if (homeScreenController.card.value.cardNumber != "") {
+                        homeScreenController.requestOrder();
+                      } else {
+                        {
+                          AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.ERROR,
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  desc: "Vui lòng thêm thẻ thanh toán trước!",
+                                  btnOkText: "OK",
+                                  btnOkOnPress: () {})
+                              .show();
+                        }
+                      }
                     },
                   ),
                 ),

@@ -29,4 +29,9 @@ class ProductModel {
     _data['title'] = title;
     return _data;
   }
+
+  @override
+  String toString() {
+    return '{"id":"$id", "price" : "$price", "title": "$title"}';
+  }
 }

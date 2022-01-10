@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/route_manager.dart';
 import 'package:mysshop/routes.dart';
 import 'package:mysshop/screens/sign_in/sign_in_screen.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       // We use routeName so that we dont need to remember the name
       initialRoute: SignInScreen.routeName,
       routes: routes,
+      builder: EasyLoading.init(),
     );
   }
 }
