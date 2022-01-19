@@ -10,7 +10,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.6,
+      width: MediaQuery.of(context).size.width * 0.5,
       decoration: BoxDecoration(
         color: kSecondaryColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(15),
@@ -18,12 +18,13 @@ class SearchField extends StatelessWidget {
       child: TextField(
         onChanged: (value) => print(value),
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 9),
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            hintText: "Tìm kiếm",
-            prefixIcon: Icon(Icons.search)),
+          contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 9),
+          border: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          hintText: "Tìm kiếm",
+          prefixIcon: Icon(Icons.search),
+        ),
       ),
     );
   }

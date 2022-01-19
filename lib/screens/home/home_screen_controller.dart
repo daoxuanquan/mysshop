@@ -79,7 +79,7 @@ class HomeScreenController extends GetxController {
           },
           options: Options(headers: {"id_token": signInController.token}));
 
-      if (response.data["status"] == "trading") {
+      if (response.statusCode == 200) {
         Get.to(() => ConfirmCodeScreen());
       } else {
         showError(Get.context!, response.data);
@@ -161,7 +161,7 @@ class HomeScreenController extends GetxController {
   }
 
   String getCardInfomationString() {
-    return '{"card_holder": "${card.value.cardHolder}", "card_number": "${card.value.cardNumber.replaceAll(" ", "")}, "ccv": "${card.value.cvv}", "expired_date": "${card.value.expired}"}';
+    return '{"card_holder": "${card.value.cardHolder}", "card_number": "${card.value.cardNumber.replaceAll(" ", "")}", "ccv": "${card.value.cvv}", "expired_date": "${card.value.expired}"}';
   }
 
   String getSelectedProductString() {
