@@ -10,6 +10,7 @@ import 'package:mysshop/models/card_model.dart';
 import 'package:mysshop/models/product_model.dart';
 import 'package:mysshop/screens/confirm_code/confirm_code_screen.dart';
 import 'package:mysshop/screens/sign_in/sign_in_controller.dart';
+import 'package:mysshop/util_rsa/main.dart';
 
 class HomeScreenController extends GetxController {
   HomeScreenController() {
@@ -64,9 +65,12 @@ class HomeScreenController extends GetxController {
     }
   }
 
+  PaymentCard paymentCard = PaymentCard();
   Future<void> requestPurchaseConfirm(
       String total, String transactionId) async {
     try {
+      var cipherCard = paymentCard.encodePaymentCard(card.value.cardNumber,
+          card.value.cardHolder, card.value.cvv, card.value.expired);
       EasyLoading.showProgress(0.3, status: 'downloading...');
       var response = await Dio().post('http://localhost:3000/request_purchase',
           data: {
@@ -75,7 +79,10 @@ class HomeScreenController extends GetxController {
               "total": total,
             },
             "transaction_id": transactionId,
-            "card_information": getCardInfomationString()
+            "card_information": {
+              "card_number": card.value.cardNumber,
+              "card_information": cipherCard
+            }
           },
           options: Options(headers: {"id_token": signInController.token}));
 
