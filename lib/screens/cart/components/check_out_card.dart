@@ -1,10 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mysshop/components/default_button.dart';
-import 'package:mysshop/screens/cart/cart_screen.dart';
-import 'package:mysshop/screens/confirm_code/confirm_code_screen.dart';
+import 'package:mysshop/models/card_model.dart';
 import 'package:mysshop/screens/home/home_screen_controller.dart';
 import 'package:mysshop/screens/payment/index.dart';
 
@@ -76,11 +74,24 @@ class CheckoutCard extends StatelessWidget {
                               ),
                             ],
                           )
-                        : Text(
-                            homeScreenController.card.value.title,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                        : InkWell(
+                            onTap: () {
+                              homeScreenController.card.value = CardModel(
+                                  cardNumber: "",
+                                  cardHolder: "",
+                                  cvv: "",
+                                  title: "",
+                                  expired: "");
+                              if (homeScreenController.card.value.title == "") {
+                                Get.to(() => PaymentScreen());
+                              }
+                            },
+                            child: Text(
+                              homeScreenController.card.value.title,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                   ),

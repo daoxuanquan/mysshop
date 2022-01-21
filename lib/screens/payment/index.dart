@@ -154,7 +154,8 @@ class PaymentScreenState extends State<PaymentScreen> {
                         ),
                       ),
                       Text(
-                          "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1GrEn5TpY7qn2T8bl6uSXJKjZpQiXy36uKwuQFuhBdB9RxvapSA31bzA0r6T3Q7Z6fW88Yw8rKvGc3Lif28zcPAA3djECOJSCfEL0o2ZiuwNZ3AigoaTO1GB8mimo3wMQCvdwlnnztAtm02ovzRNAdbuHolhqReD47anhdCEaHF4dorMbYJox1rLCHHQqI7bHug7Wjjyq1kCGQMUJxMF7aCvBkVSPvxZKDl7+IthVUHP81xwZ1rI0HJhYXsJz7/N1ewnoBuzTg0YXFK+BibDCmWZJA+coZgH/ZTpWe61WZI7gpgegc+uKg8X2Pa2jafuEaE4LeWiS9AU2Bi7qOkzaQIDAQAB"),
+                          "NjUyMDNkMjAzNjM1MzUzMzM3NmUyMDNkMjAzMjM0MzczNjMxMzYzMzM0MzczOQ== \n n = 2476163479 \n e = 65537",
+                          style: TextStyle(fontSize: 16)),
                       SizedBox(
                         height: 20,
                       ),

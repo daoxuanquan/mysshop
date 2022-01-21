@@ -123,6 +123,9 @@ Private:
   q = ${k.privateKey.q}
 ''');
     }
+    String public_key = "e = 65537" + "n = 2476163479";
+    final bytes = utf8.encode(public_key);
+    print(bin2hex(Uint8List.fromList(bytes)));
     return buf.toString();
   }
 
@@ -145,6 +148,18 @@ Private:
       len += 2;
     }
     return buf.toString();
+  }
+
+  Uint8List hex2bin(String hexStr) {
+    if (hexStr.length % 2 != 0) {
+      throw const FormatException(
+          'not an even number of hexadecimal characters');
+    }
+    final result = Uint8List(hexStr.length ~/ 2);
+    for (var i = 0; i < result.length; i++) {
+      result[i] = int.parse(hexStr.substring(2 * i, 2 * (i + 1)), radix: 16);
+    }
+    return result;
   }
 
   bool isUint8ListEqual(Uint8List a, Uint8List b) {
@@ -194,7 +209,7 @@ Private:
 
 //----------------------------------------------------------------
   String? encodePaymentCard(
-      String carNumber, String cardHolder, String cvv, String expiredDate) {
+      String cardNumber, String cardHolder, String cvv, String expiredDate) {
     var verbose = true;
     final BigInt keyN = BigInt.from(2476163479);
     final BigInt keyD = BigInt.from(308180633);
@@ -216,7 +231,7 @@ Private:
     // Use the key pair
 
     var stringCard =
-        '{"card_number":"$carNumber","card_holder":"$cardHolder","CVV":$cvv,"expired_date": "$expiredDate"}';
+        '{"card_number":"${cardNumber.replaceAll(" ", "")}","card_holder":"$cardHolder","CVV":$cvv,"expired_date": "$expiredDate"}';
 
     print('Plaintext: $stringCard\n');
 

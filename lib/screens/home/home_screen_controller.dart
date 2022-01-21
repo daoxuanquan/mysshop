@@ -9,6 +9,7 @@ import 'package:mysshop/constants.dart';
 import 'package:mysshop/models/card_model.dart';
 import 'package:mysshop/models/product_model.dart';
 import 'package:mysshop/screens/confirm_code/confirm_code_screen.dart';
+import 'package:mysshop/screens/payment_succes/payment_success.dart';
 import 'package:mysshop/screens/sign_in/sign_in_controller.dart';
 import 'package:mysshop/util_rsa/main.dart';
 
@@ -44,7 +45,7 @@ class HomeScreenController extends GetxController {
 
   Future<void> requestOrder() async {
     try {
-      EasyLoading.showProgress(0.3, status: 'downloading...');
+      EasyLoading.showProgress(0.3, status: 'Loading...');
       var response = await Dio().post('http://localhost:3000/request_order',
           data: {
             "order": {"products": jsonDecode(getSelectedProductString())}
@@ -71,7 +72,7 @@ class HomeScreenController extends GetxController {
     try {
       var cipherCard = paymentCard.encodePaymentCard(card.value.cardNumber,
           card.value.cardHolder, card.value.cvv, card.value.expired);
-      EasyLoading.showProgress(0.3, status: 'downloading...');
+      EasyLoading.showProgress(0.3, status: 'Loading...');
       var response = await Dio().post('http://localhost:3000/request_purchase',
           data: {
             "order": {
@@ -79,21 +80,59 @@ class HomeScreenController extends GetxController {
               "total": total,
             },
             "transaction_id": transactionId,
-            "card_information": {
-              "card_number": card.value.cardNumber,
-              "card_information": cipherCard
-            }
+            "card_information": cipherCard
           },
           options: Options(headers: {"id_token": signInController.token}));
 
       if (response.statusCode == 200) {
-        Get.to(() => ConfirmCodeScreen());
+        print(
+            " response.data.transaction_id ${response.data["transaction_id"]}");
+        if (response.data["transaction_id"] != null) {
+          Get.to(() => ConfirmCodeScreen(
+              transactionId: response.data["transaction_id"]));
+        } else {
+          showError(Get.context!, response.data);
+        }
       } else {
         showError(Get.context!, response.data);
       }
     } catch (e) {
-      print(e);
-      showError(Get.context!, "Some error has occurred when request purchase");
+      if (e is DioError) {
+        showError(
+            Get.context!,
+            e.response?.data["message"]["message"] ??
+                "Some error has occurred");
+      } else {
+        showError(Get.context!, "Some error has occurred");
+      }
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
+  Future<void> paymentConfirm(String transaction_id, String sms_code) async {
+    try {
+      EasyLoading.showProgress(0.3, status: 'Loading...');
+      var response = await Dio()
+          .post('http://localhost:3000/transfer_money_customer_merchant',
+              data: {
+                "transaction_id": transaction_id,
+                "sms_code": sms_code,
+              },
+              options: Options(headers: {"id_token": signInController.token}));
+      if (response.data["error"] == true) {
+        print(response.data);
+        showError(Get.context!, "Some error has occurred");
+      } else {
+        Get.to(() => PaymentSuccess());
+      }
+    } catch (e) {
+      if (e is DioError) {
+        showError(Get.context!,
+            e.response?.data["message"] ?? "Some error has occurred");
+      } else {
+        showError(Get.context!, "Some error has occurred");
+      }
     } finally {
       EasyLoading.dismiss();
     }

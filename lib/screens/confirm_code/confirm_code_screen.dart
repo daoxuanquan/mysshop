@@ -6,7 +6,9 @@ import 'package:mysshop/screens/payment/index.dart';
 import 'package:mysshop/screens/payment_succes/payment_success.dart';
 
 class ConfirmCodeScreen extends StatefulWidget {
-  const ConfirmCodeScreen({Key? key}) : super(key: key);
+  final String transactionId;
+  const ConfirmCodeScreen({Key? key, required this.transactionId})
+      : super(key: key);
 
   @override
   _ConfirmCodeScreenState createState() => _ConfirmCodeScreenState();
@@ -66,7 +68,11 @@ class _ConfirmCodeScreenState extends State<ConfirmCodeScreen> {
                 },
                 child: InkWell(
                   onTap: () {
-                    Get.to(() => PaymentSuccess());
+                    print(
+                        "code: ${confirmCodeController.textEditingController.text}");
+                    confirmCodeController.homeScreenController.paymentConfirm(
+                        widget.transactionId,
+                        confirmCodeController.textEditingController.text);
                   },
                   child: Container(
                     alignment: Alignment.center,
